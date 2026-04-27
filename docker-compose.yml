@@ -1,0 +1,20 @@
+services:
+  kk-sync:
+    build: .
+    ports:
+      - "3100:3100"
+    environment:
+      - ADMIN_KEY=${ADMIN_KEY:-change-me}
+      - PORT=3100
+      - DATA_DIR=/app/data
+    volumes:
+      - sync-data:/app/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3100/health"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+
+volumes:
+  sync-data:
