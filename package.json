@@ -1,0 +1,14 @@
+{
+  "name": "@zsc-glitch/kk-sync-server",
+  "version": "0.1.0",
+  "description": "Cloud sync server for Knowledge Keeper MCP (Pro feature)",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "dependencies": {
+    "hono": "^4.0.0"
+  }
+}
