@@ -230,6 +230,15 @@ const port = parseInt(process.env.PORT || "3100");
 
 await store.init();
 
+// Register payment routes (Stripe integration)
+try {
+  const { registerPaymentRoutes } = await import("./payment.js");
+  registerPaymentRoutes(app, store);
+  console.log("💳 Payment routes registered");
+} catch (e) {
+  console.log("💳 Payment module not loaded:", e.message);
+}
+
 const server = createServer(async (req, res) => {
   const url = new URL(req.url || "/", `http://localhost:${port}`);
   const method = (req.method || "GET").toUpperCase();
